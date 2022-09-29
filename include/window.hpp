@@ -4,21 +4,15 @@
 #include <QLabel>
 #include <QPushButton>
 
-class Tester : public QMainWindow
+class MainWin : public QMainWindow
 {
     Q_OBJECT
 
-    int32_t mButtonPressedAmt;
-
-    QLabel* mpLabel;
-    QPushButton* mpPushButton;
-
-    void updateLabelText();
 
 public:
-    Tester(QWidget* parent = nullptr);
-    ~Tester() = default;
+    MainWin(QWidget* parent = nullptr);
+    ~MainWin() = default;
 
-signals:
-    void sigLabelTextUpdated(std::string_view);
+//signals:
+    
 };
