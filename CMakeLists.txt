@@ -29,7 +29,9 @@ find_package(Qt${QT_MAJOR_VERSION} COMPONENTS Widgets REQUIRED PATHS $ENV{Qt${QT
 
 add_executable(${TARGET_NAME}
     include/window.hpp
+    include/resource.hpp
     src/window.cpp
+    src/resource.cpp
     src/main.cpp)
     
 if(MSVC)

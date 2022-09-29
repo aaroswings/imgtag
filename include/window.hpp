@@ -3,6 +3,7 @@
 #include <QMainWindow>
 #include <QLabel>
 #include <QPushButton>
+#include <QSettings>
 
 class MainWin : public QMainWindow
 {
@@ -13,6 +14,10 @@ public:
     MainWin(QWidget* parent = nullptr);
     ~MainWin() = default;
 
-//signals:
+    void saveSettings();
+    void restoreSettings();
+    void closeEvent(QCloseEvent *event);
+
+    // signals:
     
 };
