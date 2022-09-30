@@ -5,17 +5,36 @@ MainWin::MainWin(QWidget* parent)
 :QMainWindow(parent)
 {
     restoreSettings();
-    auto centralWidget = new QWidget(this);
-    centralWidget->setLayout(new QHBoxLayout());
-    setStyleFromCss(*centralWidget, QString("../resource/css/dark.css"));
-    setContentsMargins(0, 0, 0, 0);
+    setupCentralWidget();
 }
 
+void MainWin::setupCentralWidget()
+{
+    sideBar.setProperty("sideBarStyle", "true");
+    setStyleFromCss(primaryContainer, darkCssFilepath);
+    setStyleFromCss(sideBar, darkCssFilepath);
+    setStyleFromCss(btn_primaryContainerOpenTagger, darkCssFilepath);
 
+    centralWidget.setLayout(&cwLayout);
+    cwLayout.setContentsMargins(0, 0, 0, 0);
+    cwLayout.setSpacing(0);
+    setCentralWidget(&centralWidget);
+
+    sbLayout.setContentsMargins(0, 0, 0, 0);
+    btn_primaryContainerOpenTagger.setProperty("isActive", "true");
+    btn_primaryContainerOpenTagger.setIconSize(QSize(50, 50));
+    sbLayout.addWidget(&btn_primaryContainerOpenTagger);
+    sbLayout.addStretch();
+
+    sideBar.setLayout(&sbLayout);
+    sideBar.setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+    
+    cwLayout.addWidget(&sideBar);
+    cwLayout.addWidget(&primaryContainer);
+}
 
 void MainWin::saveSettings()
 {
-    QSettings settings("imgtag", "mainWin");
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
     settings.setValue("maximized", isMaximized());
@@ -28,7 +47,6 @@ void MainWin::saveSettings()
 
 void MainWin::restoreSettings()
 {
-    QSettings settings("imgtag", "mainWin");
     restoreGeometry(settings.value("geometry").toByteArray());
     restoreState(settings.value("windowState").toByteArray());
     move(settings.value("pos", pos()).toPoint());

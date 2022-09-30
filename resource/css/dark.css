@@ -5,3 +5,24 @@ QWidget {
     font-size: 18px;
     margin: 0;
 }
+
+QWidget[sideBarStyle=true] {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+    font-family: Titillium;
+    font-size: 18px;
+    margin: 0;
+}
+
+QPushButton {
+    border: none;
+    background-color: #3e3e3e;
+}
+
+QPushButton[isActive=true] {
+    background-color: rgb(123, 24, 132);
+}
+
+QPushButton[isActive=true]:hover {
+    background-color: rgb(159, 15, 172);
+}
