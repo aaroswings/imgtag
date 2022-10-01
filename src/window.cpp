@@ -5,21 +5,26 @@ MainWin::MainWin(QWidget* parent)
 :QMainWindow(parent)
 {
     restoreSettings();
+    setStyles();
     setupCentralWidget();
+    setupSideBar();
+
 }
 
 void MainWin::setupCentralWidget()
 {
-    sideBar.setProperty("sideBarStyle", "true");
-    setStyleFromCss(primaryContainer, darkCssFilepath);
-    setStyleFromCss(sideBar, darkCssFilepath);
-    setStyleFromCss(btn_primaryContainerOpenTagger, darkCssFilepath);
-
     centralWidget.setLayout(&cwLayout);
     cwLayout.setContentsMargins(0, 0, 0, 0);
     cwLayout.setSpacing(0);
     setCentralWidget(&centralWidget);
 
+    cwLayout.addWidget(&sideBar);
+    cwLayout.addWidget(&primaryContainer);
+}
+
+void MainWin::setupSideBar()
+{
+    sideBar.setProperty("sideBarStyle", "true");
     sbLayout.setContentsMargins(0, 0, 0, 0);
     btn_primaryContainerOpenTagger.setProperty("isActive", "true");
     btn_primaryContainerOpenTagger.setIconSize(QSize(50, 50));
@@ -28,9 +33,13 @@ void MainWin::setupCentralWidget()
 
     sideBar.setLayout(&sbLayout);
     sideBar.setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-    
-    cwLayout.addWidget(&sideBar);
-    cwLayout.addWidget(&primaryContainer);
+}
+
+void MainWin::setStyles()
+{
+    setStyleFromCss(primaryContainer, darkCssFilepath);
+    setStyleFromCss(sideBar, darkCssFilepath);
+    setStyleFromCss(btn_primaryContainerOpenTagger, darkCssFilepath);
 }
 
 void MainWin::saveSettings()

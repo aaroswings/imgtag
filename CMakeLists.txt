@@ -28,8 +28,12 @@ endif()
 find_package(Qt${QT_MAJOR_VERSION} COMPONENTS Widgets REQUIRED PATHS $ENV{Qt${QT_MAJOR_VERSION}_HOME})
 
 add_executable(${TARGET_NAME}
+    include/gui/taggerContainer.hpp
+    include/gui/galleryContainer.hpp
     include/window.hpp
     include/resource.hpp
+    src/gui/taggerContainer.cpp
+    src/gui/galleryContainer.cpp
     src/resource.cpp
     src/window.cpp
     src/main.cpp)

@@ -30,7 +30,9 @@ public:
     ~MainWin() = default;
 
     void setupCentralWidget();
+    void setupSideBar();
     void saveSettings();
+    void setStyles();
     void restoreSettings();
     void closeEvent(QCloseEvent *event);
 
