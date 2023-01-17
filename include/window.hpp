@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QStackedWidget>
 
+#include "gui/mwSidebar.hpp"
 
 class MainWin : public QMainWindow
 {
@@ -17,7 +18,7 @@ private:
     QWidget centralWidget;
 
     QVBoxLayout sbLayout;
-    QWidget sideBar;
+    MWSidebar sideBar;
 
     QStackedWidget primaryContainer;
     QSettings settings{"imgtag", "mainWin"};
@@ -36,6 +37,6 @@ public:
     void restoreSettings();
     void closeEvent(QCloseEvent *event);
 
-    // signals:
+signals:
     
 };
